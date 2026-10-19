@@ -31,3 +31,10 @@ The fiscal year is labeled by the calendar year in which it **ends**. A fiscal y
 A January-start fiscal year is the one case where the year starts and ends in the same calendar year. The end-year labeling rule still holds (FY 2024 runs Jan–Dec 2024), but it is the boundary where the general "starts in year N, ends in year N+1" pattern breaks down. The implementation handles this explicitly; if you copy the math into your own code, handle January separately or you will be off by one.
 
 Dates are compared by local calendar components only. Time-of-day is ignored. If you construct a `Date` from a UTC string and your local timezone is behind UTC, the calendar day may shift forward — pass `new Date(year, monthIndex, day)` to avoid ambiguity.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
