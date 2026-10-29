@@ -1,6 +1,6 @@
 {
   "name": "fiscal-year-mapper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Translates calendar dates into fiscal year and quarter values based on a configurable start month.",
   "type": "module",
   "main": "src/index.js",
